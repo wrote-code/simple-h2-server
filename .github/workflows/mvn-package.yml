@@ -20,5 +20,5 @@ jobs:
       - name: 上传制品
         uses: actions/upload-artifact@v3
         with:
-          name: 可执行jar包
-          path: target/media-*.jar
+          name: jar包
+          path: target/simple-h2-server-0.0.1.jar
