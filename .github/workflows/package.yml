@@ -1,0 +1,24 @@
+name: mvn-package
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+jobs:
+  build-jar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: 设置jdk
+        uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'adopt-hotspot'
+          cache: maven
+      - name: 打包
+        run: mvn -B -DskipTests=true package
+      - name: 上传制品
+        uses: actions/upload-artifact@v3
+        with:
+          name: 可执行jar包
+          path: target/media-*.jar
